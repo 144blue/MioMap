@@ -16,5 +16,20 @@ namespace MioMap
         {
             InitializeComponent();
         }
+
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
