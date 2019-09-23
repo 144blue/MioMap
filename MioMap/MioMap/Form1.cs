@@ -56,7 +56,7 @@ namespace MioMap
             gMapControl1.Zoom = 9;
             gMapControl1.AutoScroll = true;
 
-            StreamReader reader = File.OpenText
+            StreamReader reader = File.OpenText("");
         }
     }
 }
