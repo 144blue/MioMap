@@ -8,21 +8,25 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using modelo;
 
 namespace MioMap
 {
     public partial class Form1 : Form
     {
+        List<Stop> stops;
         double latInicial = 3.437584;
         double lonInicial = -76.525843;
 
         public Form1()
         {
             InitializeComponent();
+            stops = new List<Stop>();
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -56,7 +60,32 @@ namespace MioMap
             gMapControl1.Zoom = 9;
             gMapControl1.AutoScroll = true;
 
-            StreamReader reader = File.OpenText("");
+            StreamReader reader = new StreamReader("stops.csv");
+            String line = reader.ReadLine();
+
+            string las;
+            string lons;
+
+            double la;
+            double lon;
+
+            while (line != null)
+            {
+                String[] datos = line.Split(',');
+
+                las = datos[4];
+                las.Replace(',', '.');
+                lons = datos[5];
+                lons.Replace(',', '.');
+
+                la = double.Parse(las, CultureInfo.InvariantCulture);
+                lon = double.Parse(lons, CultureInfo.InvariantCulture);
+
+                Stop a = new Stop(int.Parse(datos[0]), int.Parse(datos[1]), datos[2], datos[3], la, lon);
+                stops.Add(a);
+
+                line = reader.ReadLine();
+            }
         }
     }
 }

@@ -46,11 +46,5 @@
     <Compile Include="Stop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MioMap\MioMap.csproj">
-      <Project>{62ee71d6-3398-4af8-af36-6d4d4aff47a4}</Project>
-      <Name>MioMap</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
