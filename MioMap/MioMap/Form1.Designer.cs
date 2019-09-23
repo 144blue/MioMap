@@ -60,6 +60,7 @@
             this.gMapControl1.Size = new System.Drawing.Size(525, 342);
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
+            this.gMapControl1.Load += new System.EventHandler(this.GMapControl1_Load);
             // 
             // radioButton1
             // 
@@ -118,6 +119,7 @@
             this.Controls.Add(this.gMapControl1);
             this.Name = "Form1";
             this.Text = "Gestión de paradas y estaciones de MIO";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
