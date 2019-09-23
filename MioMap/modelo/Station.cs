@@ -14,5 +14,22 @@ namespace modelo
         private string longName;
         private double gps_X;
         private double gps_Y;
+
+        public Station(int stopId, int planVersionId, string shortName, string longName, double gps_X, double gps_Y)
+        {
+            this.stopId = stopId;
+            this.planVersionId = planVersionId;
+            this.shortName = shortName;
+            this.longName = longName;
+            this.gps_X = gps_X;
+            this.gps_Y = gps_Y;
+        }
+
+        public int StopId { get => stopId; set => stopId = value; }
+        public int PlanVersionId { get => planVersionId; set => planVersionId = value; }
+        public string ShortName { get => shortName; set => shortName = value; }
+        public string LongName { get => longName; set => longName = value; }
+        public double Gps_X { get => gps_X; set => gps_X = value; }
+        public double Gps_Y { get => gps_Y; set => gps_Y = value; }
     }
 }
