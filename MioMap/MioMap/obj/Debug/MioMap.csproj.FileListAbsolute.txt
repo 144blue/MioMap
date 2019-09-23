@@ -23,3 +23,5 @@ C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.csproj.CoreCom
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.csproj.CopyComplete
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.exe
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.pdb
+C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\bin\Debug\modelo.dll
+C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\bin\Debug\modelo.pdb

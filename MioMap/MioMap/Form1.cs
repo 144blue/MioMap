@@ -20,6 +20,7 @@ namespace MioMap
     public partial class Form1 : Form
     {
         List<Stop> stops;
+        GMarkerGoogle stopsMG;
         double latInicial = 3.437584;
         double lonInicial = -76.525843;
 
@@ -61,7 +62,7 @@ namespace MioMap
             gMapControl1.AutoScroll = true;
 
             StreamReader reader = new StreamReader("stops.csv");
-            String line = reader.ReadLine();
+            string line = reader.ReadLine();
 
             string las;
             string lons;
@@ -71,21 +72,23 @@ namespace MioMap
 
             while (line != null)
             {
-                String[] datos = line.Split(',');
+                string[] datos = line.Split(',');
 
-                las = datos[4];
+                las = datos[6];
                 las.Replace(',', '.');
-                lons = datos[5];
+                lons = datos[7];
                 lons.Replace(',', '.');
-
+                
                 la = double.Parse(las, CultureInfo.InvariantCulture);
                 lon = double.Parse(lons, CultureInfo.InvariantCulture);
 
-                Stop a = new Stop(int.Parse(datos[0]), int.Parse(datos[1]), datos[2], datos[3], la, lon);
+
+                Stop a = new Stop(int.Parse(datos[0]), int.Parse(datos[1]), datos[2], datos[3], double.Parse(datos[6]), double.Parse(datos[7]));
                 stops.Add(a);
 
                 line = reader.ReadLine();
             }
+            reader.Close();
         }
     }
 }
