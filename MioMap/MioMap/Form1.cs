@@ -60,6 +60,8 @@ namespace MioMap
             gMapControl1.MaxZoom = 24;
             gMapControl1.Zoom = 9;
             gMapControl1.AutoScroll = true;
+            gMapControl1.ShowCenter = false;
+
 
             StreamReader reader = new StreamReader("stops.csv");
             string line = reader.ReadLine();
