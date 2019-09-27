@@ -20,9 +20,10 @@ namespace MioMap
     public partial class Form1 : Form
     {
         List<Stop> stops;
-        GMarkerGoogle stopsMG;
         double latInicial = 3.437584;
         double lonInicial = -76.525843;
+        GMapOverlay realStops;
+
 
         public Form1()
         {
@@ -62,8 +63,11 @@ namespace MioMap
             gMapControl1.AutoScroll = true;
             gMapControl1.ShowCenter = false;
 
-
-            StreamReader reader = new StreamReader("stops.csv");
+            //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
+            //StreamReader reader = new StreamReader("stops.csv");
+            //THIS IS MY ABSOLUTE PATH 144BLUE USE YOUR OWN PATH B***
+            Console.WriteLine("to read file");
+            StreamReader reader = new StreamReader("C:/Users/DH/Desktop/datos integra/stops.csv");
             string line = reader.ReadLine();
 
             string las;
@@ -71,6 +75,8 @@ namespace MioMap
 
             double la;
             double lon;
+
+            realStops = new GMapOverlay();
 
             while (line != null)
             {
@@ -88,9 +94,15 @@ namespace MioMap
                 Stop a = new Stop(int.Parse(datos[0]), int.Parse(datos[1]), datos[2], datos[3], double.Parse(datos[6]), double.Parse(datos[7]));
                 stops.Add(a);
 
+                realStops.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon),GMarkerGoogleType.blue_dot));
+
                 line = reader.ReadLine();
             }
+
             reader.Close();
+            gMapControl1.Overlays.Add(realStops);
+            
+
         }
     }
 }
