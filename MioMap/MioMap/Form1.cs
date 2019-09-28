@@ -107,7 +107,7 @@ namespace MioMap
                     countInvalidEntries++;
                 }
                 
-                realStops.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon),GMarkerGoogleType.blue_dot));
+                realStops.Markers.Add(new GMarkerGoogle(new PointLatLng(lon, la),GMarkerGoogleType.blue_dot));
                 line = reader.ReadLine();
             }
             Console.WriteLine("number of invalid coordenate entries: "+countInvalidEntries);
