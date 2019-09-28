@@ -77,28 +77,40 @@ namespace MioMap
             double lon;
 
             realStops = new GMapOverlay();
+            int countInvalidEntries=0;
 
             while (line != null)
             {
                 string[] datos = line.Split(',');
-
                 las = datos[6];
                 las.Replace(',', '.');
                 lons = datos[7];
                 lons.Replace(',', '.');
+                la = 0;
+                lon = 0;
+                try
+                {
+                    la = double.Parse(las, CultureInfo.InvariantCulture);
+                    lon = double.Parse(lons, CultureInfo.InvariantCulture);
+                }
+                catch (Exception)
+                {
+                    countInvalidEntries++;  
+                }
+                try
+                {
+                    Stop a = new Stop(int.Parse(datos[0]), int.Parse(datos[1]), datos[2], datos[3], double.Parse(datos[6]), double.Parse(datos[7]));
+                    stops.Add(a);
+                }                
+                catch (Exception)
+                {
+                    countInvalidEntries++;
+                }
                 
-                la = double.Parse(las, CultureInfo.InvariantCulture);
-                lon = double.Parse(lons, CultureInfo.InvariantCulture);
-
-
-                Stop a = new Stop(int.Parse(datos[0]), int.Parse(datos[1]), datos[2], datos[3], double.Parse(datos[6]), double.Parse(datos[7]));
-                stops.Add(a);
-
                 realStops.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon),GMarkerGoogleType.blue_dot));
-
                 line = reader.ReadLine();
             }
-
+            Console.WriteLine("number of invalid coordenate entries: "+countInvalidEntries);
             reader.Close();
             gMapControl1.Overlays.Add(realStops);
             
