@@ -33,22 +33,18 @@ namespace MioMap
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void Label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void GMapControl1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,7 +53,7 @@ namespace MioMap
             gMapControl1.CanDragMap = true;
             gMapControl1.MapProvider = GMapProviders.GoogleMap;
             gMapControl1.Position = new PointLatLng(latInicial, lonInicial);
-            gMapControl1.MinZoom = 0;
+            gMapControl1.MinZoom = 0; 
             gMapControl1.MaxZoom = 24;
             gMapControl1.Zoom = 9;
             gMapControl1.AutoScroll = true;
@@ -65,7 +61,7 @@ namespace MioMap
 
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
             //StreamReader reader = new StreamReader("stops.csv");
-            //THIS IS MY ABSOLUTE PATH 144BLUE USE YOUR OWN PATH B***
+            //THIS IS MY ABSOLUTE PATH 144BLUE, USE YOUR OWN PATH B****
             Console.WriteLine("to read file");
             StreamReader reader = new StreamReader("C:/Users/DH/Desktop/datos integra/stops.csv");
             string line = reader.ReadLine();
@@ -78,6 +74,7 @@ namespace MioMap
 
             realStops = new GMapOverlay();
             int countInvalidEntries=0;
+            int markers = 0;
 
             while (line != null)
             {
@@ -109,12 +106,11 @@ namespace MioMap
                 
                 realStops.Markers.Add(new GMarkerGoogle(new PointLatLng(lon, la),GMarkerGoogleType.blue_dot));
                 line = reader.ReadLine();
+                markers++;
             }
             Console.WriteLine("number of invalid coordenate entries: "+countInvalidEntries);
             reader.Close();
-            gMapControl1.Overlays.Add(realStops);
-            
-
+            gMapControl1.Overlays.Add(realStops);            
         }
     }
 }
