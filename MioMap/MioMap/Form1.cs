@@ -208,7 +208,7 @@ namespace MioMap
             gMapControl1.Overlays.Add(onlyStops);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             //try
             //{
@@ -242,7 +242,6 @@ namespace MioMap
                 lons = datos[5];
                 lons.Insert(3, ",");
 
-                Bus b = new Bus(las, lons, datos[11]);
             }
         }
     }
