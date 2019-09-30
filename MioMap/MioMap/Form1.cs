@@ -195,5 +195,10 @@ namespace MioMap
             gMapControl1.Overlays.Add(onlyStations);
             gMapControl1.Overlays.Add(onlyStops);
         }
+
+
+
+
+
     }
 }
