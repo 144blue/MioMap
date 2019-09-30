@@ -54,12 +54,10 @@ namespace MioMap
 
         private void Label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void GMapControl1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -68,7 +66,7 @@ namespace MioMap
             gMapControl1.CanDragMap = true;
             gMapControl1.MapProvider = GMapProviders.GoogleMap;
             gMapControl1.Position = new PointLatLng(latInicial, lonInicial);
-            gMapControl1.MinZoom = 0;
+            gMapControl1.MinZoom = 0; 
             gMapControl1.MaxZoom = 24;
             gMapControl1.Zoom = 9;
             gMapControl1.AutoScroll = true;
@@ -77,7 +75,7 @@ namespace MioMap
             
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
             //StreamReader reader = new StreamReader("stops.csv");
-            //THIS IS MY ABSOLUTE PATH 144BLUE USE YOUR OWN PATH B***
+            //THIS IS MY ABSOLUTE PATH 144BLUE, USE YOUR OWN PATH B****
             Console.WriteLine("to read file");
             StreamReader reader = new StreamReader(ABSOLUTE_PATH);
             string line = reader.ReadLine();
@@ -90,6 +88,7 @@ namespace MioMap
 
             
             int countInvalidEntries=0;
+            int markers = 0;
 
             while (line != null)
             {
@@ -156,6 +155,7 @@ namespace MioMap
                 }
 
                 line = reader.ReadLine();
+                markers++;
             }
             Console.WriteLine("number of invalid coordenate entries: "+countInvalidEntries);
             reader.Close();
