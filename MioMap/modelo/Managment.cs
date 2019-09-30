@@ -18,7 +18,7 @@ namespace modelo
 
         private Hashtable StopsHash;
         
-        public void readStops()
+        public void ReadStops()
         {
             StreamReader reader = new StreamReader("C:/Users/DH/Desktop/datos integra/stops.csv");
             string line = reader.ReadLine();
