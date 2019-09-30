@@ -75,7 +75,7 @@ namespace MioMap
             
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
             //StreamReader reader = new StreamReader("stops.csv");
-            //THIS IS MY ABSOLUTE PATH 144BLUE, USE YOUR OWN PATH B****
+           
             Console.WriteLine("to read file");
             StreamReader reader = new StreamReader(ABSOLUTE_PATH);
             string line = reader.ReadLine();
