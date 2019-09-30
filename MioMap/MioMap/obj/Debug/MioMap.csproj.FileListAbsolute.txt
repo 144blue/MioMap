@@ -19,7 +19,6 @@ C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.csprojAssembly
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.Form1.resources
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.Properties.Resources.resources
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.csproj.GenerateResource.cache
-C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.csproj.CoreCompileInputs.cache
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.csproj.CopyComplete
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.exe
 C:\Users\juanm\source\repos\MioMap\MioMap\MioMap\obj\Debug\MioMap.pdb

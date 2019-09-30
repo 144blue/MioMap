@@ -12,10 +12,10 @@ namespace modelo
         private int planVersionId;
         private string shortName;
         private string longName;
-        private double gps_X;
-        private double gps_Y;
+        private string gps_X;
+        private string gps_Y;
 
-        public Stop(int stopId, int planVersionId, string shortName, string longName, double gps_X, double gps_Y)
+        public Stop(int stopId, int planVersionId, string shortName, string longName, string gps_X, string gps_Y)
         {
             this.stopId = stopId;
             this.planVersionId = planVersionId;
@@ -29,7 +29,7 @@ namespace modelo
         public int PlanVersionId { get => planVersionId; set => planVersionId = value; }
         public string ShortName { get => shortName; set => shortName = value; }
         public string LongName { get => longName; set => longName = value; }
-        public double Gps_X { get => gps_X; set => gps_X = value; }
-        public double Gps_Y { get => gps_Y; set => gps_Y = value; }
+        public string Gps_X { get => gps_X; set => gps_X = value; }
+        public string Gps_Y { get => gps_Y; set => gps_Y = value; }
     }
 }

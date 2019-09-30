@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbParadas = new System.Windows.Forms.RadioButton();
+            this.rbEstaciones = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.rbTodo = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
@@ -62,29 +62,27 @@
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.Load += new System.EventHandler(this.GMapControl1_Load);
             // 
-            // radioButton1
+            // rbParadas
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(589, 174);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(104, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Paradas de calle";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            this.rbParadas.AutoSize = true;
+            this.rbParadas.Location = new System.Drawing.Point(589, 174);
+            this.rbParadas.Name = "rbParadas";
+            this.rbParadas.Size = new System.Drawing.Size(77, 17);
+            this.rbParadas.TabIndex = 1;
+            this.rbParadas.Text = "Estaciones";
+            this.rbParadas.UseVisualStyleBackColor = true;
+            this.rbParadas.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // rbEstaciones
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(589, 129);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(77, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Estaciones";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+            this.rbEstaciones.AutoSize = true;
+            this.rbEstaciones.Location = new System.Drawing.Point(589, 129);
+            this.rbEstaciones.Name = "rbEstaciones";
+            this.rbEstaciones.Size = new System.Drawing.Size(64, 17);
+            this.rbEstaciones.TabIndex = 2;
+            this.rbEstaciones.Text = "Paradas";
+            this.rbEstaciones.UseVisualStyleBackColor = true;
+            this.rbEstaciones.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
             // label1
             // 
@@ -103,9 +101,9 @@
             this.rbTodo.Name = "rbTodo";
             this.rbTodo.Size = new System.Drawing.Size(50, 17);
             this.rbTodo.TabIndex = 4;
-            this.rbTodo.TabStop = true;
             this.rbTodo.Text = "Todo";
             this.rbTodo.UseVisualStyleBackColor = true;
+            this.rbTodo.CheckedChanged += new System.EventHandler(this.rbTodo_CheckedChanged);
             // 
             // Form1
             // 
@@ -114,8 +112,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.rbTodo);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbEstaciones);
+            this.Controls.Add(this.rbParadas);
             this.Controls.Add(this.gMapControl1);
             this.Name = "Form1";
             this.Text = "Gestión de paradas y estaciones de MIO";
@@ -128,8 +126,8 @@
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbParadas;
+        private System.Windows.Forms.RadioButton rbEstaciones;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbTodo;
     }
