@@ -19,6 +19,7 @@ namespace MioMap
 {
     public partial class Form1 : Form
     {
+        List<PointLatLng> points;
         HashSet<Stop> stops;
         HashSet<Stop> stations;
         double latInicial = 3.437584;
@@ -143,6 +144,17 @@ namespace MioMap
                         a.ShortName.Contains("VIP"))
                     {
                         stations.Add(a);
+                        //switch (a.ShortName)
+                        //{
+                        //    case "A.SAN":
+                        if (a.ShortName == "UNIV")
+                        {
+                            points = new List<PointLatLng>();
+                            //PointLatLng p = ;
+                            points.Add(new PointLatLng(int.Parse(a.Gps_Y), int.Parse(a.Gps_X)));
+                        }
+                                //break;
+                        //}
                     } else
                     {
                         stops.Add(a);
@@ -198,27 +210,40 @@ namespace MioMap
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<PointLatLng> points = new List<PointLatLng>();
-            //var polygons;
-            foreach (Stop a in stations)
-            {
+            //try
+            //{
+            GMapPolygon polygon = new GMapPolygon(points, "poligonos");
+            polygon.Stroke = new Pen(Color.Green, 2);
+            polygon.Fill = new SolidBrush(Color.Aquamarine);
+            GMapOverlay polygons = new GMapOverlay("Estaciones");
+            polygons.Polygons.Add(polygon);
+            gMapControl1.Overlays.Add(polygons);
+            //}
+            //catch (Exception)
+            //{
                 
-                string name = a.ShortName;
-                switch (name)
-                {
-                    case "A.SAN":
-                        Pen pen = new Pen(Color.Green);
-                        PointLatLng p = new PointLatLng(int.Parse(a.Gps_Y), int.Parse(a.Gps_X));
-                        points.Add(p);
-                        GMapPolygon polygon = new GMapPolygon(points, "poligonos");
-                        var polygons = new GMapOverlay("Estaciones");
-                        polygons.Polygons.Add(polygon);
-                        gMapControl1.Overlays.Add(polygons);
-                        break;
-                }
+            //}
+
+        }
+
+        public void busMovement()
+        {
+            StreamReader reader = new StreamReader("C:/Users/juanm/Documents/Bus1.csv");
+            string line = reader.ReadLine();
+
+            string las;
+            string lons;
+
+            while (line != null)
+            {
+                string[] datos = line.Split(',');
+                las = datos[4];
+                las.Insert(1, ",");
+                lons = datos[5];
+                lons.Insert(3, ",");
+
+                Bus b = new Bus(las, lons, datos[11]);
             }
-            
-            //e.Graphics.
         }
     }
 }
