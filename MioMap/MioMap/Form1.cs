@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,7 @@ namespace MioMap
     {
         HashSet<Stop> stops;
         HashSet<Stop> stations;
+        Hashtable bus1;
         double latInicial = 3.437584;
         double lonInicial = -76.525843;
         GMapOverlay realStops;
@@ -28,6 +30,7 @@ namespace MioMap
         GMapOverlay onlyStations;
         const string ABSOLUTE_PATH = "C:/Users/juanm/Downloads/stops.csv";
         GroupBox options;
+        
 
         public Form1()
         {
@@ -38,6 +41,7 @@ namespace MioMap
             realStops = new GMapOverlay();
             onlyStations = new GMapOverlay();
             onlyStops = new GMapOverlay();
+            bus1 = new Hashtable();
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -197,7 +201,76 @@ namespace MioMap
         }
 
 
+        private void readBuss()
+        {
+            bus1 = new Hashtable();
 
+
+            //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
+            StreamReader reader = new StreamReader("DATAGRAMS.csv");
+
+            Console.WriteLine("to read file");
+            //StreamReader reader = new StreamReader(ABSOLUTE_PATH);
+            string line = reader.ReadLine();
+
+            string las;
+            string lons;
+
+            double la;
+            double lon;
+
+            bool isTheSameBus = true;
+
+            int countInvalidEntries = 0;
+            int markers = 0;
+            int max = 0;
+
+            while (line != null&&max<100)
+            {
+                string[] datos = line.Split(',');
+                las = datos[4];
+                las.Insert(2, ",");
+                lons = datos[5];
+                lons.Insert(3, ",");
+                String[] timeDate = datos[10].Split(' ');
+
+                try
+                {
+                    //  Stop Id,             Plan Version,      Short Name, Long Name,        Gps x,                 Gps Y
+
+                    if (!bus1.ContainsKey(datos[11]))
+                    {
+                        Bus a = new Bus(datos[11]);
+                        Ubication u = new Ubication(las, lons);
+                        
+                       
+                        a.UbicationTime.Add(timeDate[1],u);
+                        bus1.Add(datos[11],a);
+
+                    }
+                    else
+                    {
+                        Bus temporal = (Bus)bus1[datos[11]];
+                        temporal.UbicationTime.Add(timeDate[1],new Ubication(las,lons));
+   
+                    }
+
+                    
+                    
+
+                }
+                catch (Exception)
+                {
+                    countInvalidEntries++;
+                }
+
+                line = reader.ReadLine();
+                max++;
+            }
+            Console.WriteLine("number of invalid coordenate entries: " + countInvalidEntries);
+            reader.Close();   
+
+        }
 
 
     }
