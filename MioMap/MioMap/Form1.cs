@@ -187,38 +187,13 @@ namespace MioMap
             
         }
 
-
+        
 
         private void rbTodo_CheckedChanged(object sender, EventArgs e)
         {
             gMapControl1.Overlays.Clear();
             gMapControl1.Overlays.Add(onlyStations);
             gMapControl1.Overlays.Add(onlyStops);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            List<PointLatLng> points = new List<PointLatLng>();
-            //var polygons;
-            foreach (Stop a in stations)
-            {
-                
-                string name = a.ShortName;
-                switch (name)
-                {
-                    case "A.SAN":
-                        Pen pen = new Pen(Color.Green);
-                        PointLatLng p = new PointLatLng(int.Parse(a.Gps_Y), int.Parse(a.Gps_X));
-                        points.Add(p);
-                        GMapPolygon polygon = new GMapPolygon(points, "poligonos");
-                        var polygons = new GMapOverlay("Estaciones");
-                        polygons.Polygons.Add(polygon);
-                        gMapControl1.Overlays.Add(polygons);
-                        break;
-                }
-            }
-            
-            //e.Graphics.
         }
     }
 }
