@@ -33,6 +33,7 @@
             this.rbEstaciones = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.rbTodo = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -105,11 +106,22 @@
             this.rbTodo.UseVisualStyleBackColor = true;
             this.rbTodo.CheckedChanged += new System.EventHandler(this.rbTodo_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(589, 213);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 24);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Mostrar polígono";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.rbTodo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rbEstaciones);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.RadioButton rbEstaciones;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbTodo;
+        private System.Windows.Forms.Button button1;
     }
 }
 
