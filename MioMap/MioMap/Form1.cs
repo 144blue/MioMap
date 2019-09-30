@@ -195,5 +195,11 @@ namespace MioMap
             gMapControl1.Overlays.Add(onlyStations);
             gMapControl1.Overlays.Add(onlyStops);
         }
+
+        public void createPolygon(PaintEventArgs e)
+        {
+            Pen pen = new Pen(Color.Blue, 2);
+            Point p1 = new Point();
+        }
     }
 }
