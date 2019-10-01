@@ -39,6 +39,7 @@ namespace MioMap
             realStops = new GMapOverlay();
             onlyStations = new GMapOverlay();
             onlyStops = new GMapOverlay();
+            points = new List<PointLatLng>();
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -147,11 +148,13 @@ namespace MioMap
                         //switch (a.ShortName)
                         //{
                         //    case "A.SAN":
-                        if (a.ShortName == "UNIV")
+                        if (a.ShortName.Equals("UNIV"))
                         {
-                            points = new List<PointLatLng>();
-                            //PointLatLng p = ;
-                            points.Add(new PointLatLng(int.Parse(a.Gps_Y), int.Parse(a.Gps_X)));
+                            
+                            PointLatLng p = new PointLatLng(int.Parse(a.Gps_Y), int.Parse(a.Gps_X));
+                            points.Add(p);
+                            Console.WriteLine(p.Lat + "");
+                            Console.WriteLine(p.Lng + "");
                         }
                                 //break;
                         //}
@@ -208,23 +211,6 @@ namespace MioMap
             gMapControl1.Overlays.Add(onlyStops);
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            GMapPolygon polygon = new GMapPolygon(points, "poligonos");
-            polygon.Stroke = new Pen(Color.Green, 2);
-            polygon.Fill = new SolidBrush(Color.Aquamarine);
-            GMapOverlay polygons = new GMapOverlay("Estaciones");
-            polygons.Polygons.Add(polygon);
-            gMapControl1.Overlays.Add(polygons);
-            //}
-            //catch (Exception)
-            //{
-                
-            //}
-
-        }
 
         public void busMovement()
         {
@@ -243,6 +229,16 @@ namespace MioMap
                 lons.Insert(3, ",");
 
             }
+        }
+
+        private void btMostrar_Click(object sender, EventArgs e)
+        {
+            GMapPolygon polygon = new GMapPolygon(points, "poligonos");
+            polygon.Stroke = new Pen(Color.Green, 2);
+            polygon.Fill = new SolidBrush(Color.Aquamarine);
+            GMapOverlay polygons = new GMapOverlay("Estaciones");
+            polygons.Polygons.Add(polygon);
+            gMapControl1.Overlays.Add(polygons);
         }
     }
 }

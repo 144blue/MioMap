@@ -8,22 +8,20 @@ namespace modelo
 {
     public class Bus
     {
-<<<<<<< HEAD
         private string Latitud;
         private string Longitud;
-        private string BusId;
+        private string BusId1;
 
         public Bus(string latitud, string longitud, string busId)
         {
             Latitud = latitud;
             Longitud = longitud;
-            BusId = busId;
+            BusId1 = busId;
         }
 
         public string Latitud1 { get => Latitud; set => Latitud = value; }
         public string Longitud1 { get => Longitud; set => Longitud = value; }
-        public string BusId1 { get => BusId; set => BusId = value; }
-=======
+        public string BusId11 { get => BusId; set => BusId = value; }
         private String busId;
         private Hashtable ubicationTime;
 
@@ -36,6 +34,5 @@ namespace modelo
 
         public string BusId { get => busId; set => busId = value; }
         public Hashtable UbicationTime { get => ubicationTime; set => ubicationTime = value; }
->>>>>>> 8fe756e87b90266898da2e1142bfda621c17112a
     }
 }

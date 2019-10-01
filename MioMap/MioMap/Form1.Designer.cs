@@ -35,9 +35,9 @@ namespace MioMap
             this.rbEstaciones = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.rbTodo = new System.Windows.Forms.RadioButton();
-            this.btMostrar = new System.Windows.Forms.Button();
             this.panelOpciones = new System.Windows.Forms.Panel();
             this.panelMapa = new System.Windows.Forms.Panel();
+            this.btMostrar = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelMapa.SuspendLayout();
             this.SuspendLayout();
@@ -114,21 +114,11 @@ namespace MioMap
             this.rbTodo.UseVisualStyleBackColor = true;
             this.rbTodo.CheckedChanged += new System.EventHandler(this.rbTodo_CheckedChanged);
             // 
-            // btMostrar
-            // 
-            this.btMostrar.Location = new System.Drawing.Point(20, 166);
-            this.btMostrar.Name = "btMostrar";
-            this.btMostrar.Size = new System.Drawing.Size(106, 24);
-            this.btMostrar.TabIndex = 5;
-            this.btMostrar.Text = "Mostrar";
-            this.btMostrar.UseVisualStyleBackColor = true;
-            this.btMostrar.Click += new System.EventHandler(this.button1_Click);
-            // 
             // panelOpciones
             // 
             this.panelOpciones.AutoSize = true;
-            this.panelOpciones.Controls.Add(this.label1);
             this.panelOpciones.Controls.Add(this.btMostrar);
+            this.panelOpciones.Controls.Add(this.label1);
             this.panelOpciones.Controls.Add(this.rbTodo);
             this.panelOpciones.Controls.Add(this.rbParadas);
             this.panelOpciones.Controls.Add(this.rbEstaciones);
@@ -145,6 +135,16 @@ namespace MioMap
             this.panelMapa.Name = "panelMapa";
             this.panelMapa.Size = new System.Drawing.Size(556, 341);
             this.panelMapa.TabIndex = 7;
+            // 
+            // btMostrar
+            // 
+            this.btMostrar.Location = new System.Drawing.Point(74, 174);
+            this.btMostrar.Name = "btMostrar";
+            this.btMostrar.Size = new System.Drawing.Size(91, 21);
+            this.btMostrar.TabIndex = 5;
+            this.btMostrar.Text = "Mostrar";
+            this.btMostrar.UseVisualStyleBackColor = true;
+            this.btMostrar.Click += new System.EventHandler(this.btMostrar_Click);
             // 
             // Form1
             // 
@@ -166,11 +166,6 @@ namespace MioMap
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
@@ -178,9 +173,9 @@ namespace MioMap
         private System.Windows.Forms.RadioButton rbEstaciones;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rbTodo;
-        private System.Windows.Forms.Button btMostrar;
         private System.Windows.Forms.Panel panelOpciones;
         private System.Windows.Forms.Panel panelMapa;
+        private System.Windows.Forms.Button btMostrar;
     }
 }
 
