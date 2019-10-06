@@ -25,6 +25,7 @@ namespace modelo
             RealTime = new GenericTime(2019, 5, 10, 39, 9, 25);
             Console.WriteLine("initilized menthods in managment");
             loadStops();
+            readBuss();
         }
 
         public Hashtable Stops { get => stops; set => stops = value; }
@@ -136,7 +137,7 @@ namespace modelo
         }
 
 
-        private void readBuss()
+        public void readBuss()
         {
             bus1 = new Hashtable();
 
@@ -144,8 +145,7 @@ namespace modelo
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
             StreamReader reader = new StreamReader("C:/Users/DH/Desktop/datos integra/DATAGRAMS.csv");
 
-            Console.WriteLine("to read file");
-            //StreamReader reader = new StreamReader(ABSOLUTE_PATH);
+           
             string line = reader.ReadLine();
 
             string las;
@@ -154,7 +154,7 @@ namespace modelo
             double la;
             double lon;
 
-            bool isTheSameBus = true;
+            
 
             int countInvalidEntries = 0;
 
@@ -169,32 +169,31 @@ namespace modelo
                 lons.Insert(3, ",");
                 String[] timeDate = datos[10].Split(' ');
 
-                //try
-                //{
-                //    //  Stop Id,             Plan Version,      Short Name, Long Name,        Gps x,                 Gps Y
+                try
+                {        
 
-                //    if (!bus1.ContainsKey(datos[11]))
-                //    {
-                //        Bus a = new Bus(datos[11]);
-                //        Ubication u = new Ubication(las, lons);
+                    if (!bus1.ContainsKey(datos[11]))
+                    {
+                        Bus a = new Bus();
+                        Ubication u = new Ubication(las, lons);
 
 
-                //        a.UbicationTime.Add(timeDate[1],u);
-                //        bus1.Add(datos[11],a);
+                        a.UbicationTime.Add(timeDate[1], u);
+                        bus1.Add(datos[11], a);
 
-                //    }
-                //    else
-                //    {
-                //        Bus temporal = (Bus)bus1[datos[11]];
-                //        temporal.UbicationTime.Add(timeDate[1],new Ubication(las,lons));
+                    }
+                    else
+                    {
+                        Bus temporal = (Bus)bus1[datos[11]];
+                        temporal.UbicationTime.Add(timeDate[1], new Ubication(las, lons));
 
-                //    }
+                    }
 
-                //}
-                //catch (Exception)
-                //{
-                //    countInvalidEntries++;
-                //}
+                }
+                catch (Exception)
+                {
+                    countInvalidEntries++;
+                }
 
                 line = reader.ReadLine();
                 max++;

@@ -13,12 +13,14 @@ namespace modelo
         private Thread sincro;
         private double posX;
         private double posY;
-        private DateTime realTime;
+        private String time;
+        
 
-        public Bus(string busId, DateTime realTime)
+
+        public Bus(string busId, String time)
         {
             this.BusId = busId;
-            this.realTime = realTime;
+            this.time = time;
             UbicationTime = new Hashtable();
         }
 
@@ -27,13 +29,13 @@ namespace modelo
         public double PosX { get => posX; set => posX = value; }
         public double PosY { get => posY; set => posY = value; }
         public Thread Sincro { get => sincro; set => sincro = value; }
-        public DateTime RealTime { get => realTime; set => realTime = value; }
+        public string Time { get => time; set => time = value; }
 
         public void trmove()
         {
 
-            this.PosX = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posx);
-            this.PosY = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posy);
+            this.PosX = Convert.ToDouble(((Ubication)UbicationTime[Time]).Posx);
+            this.PosY = Convert.ToDouble(((Ubication)UbicationTime[Time]).Posy);
            
         }
 
