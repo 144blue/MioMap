@@ -11,7 +11,7 @@ namespace modelo
     public class Managment
     {
 
-
+        private 
         Hashtable stops;
         Hashtable stations;
         Hashtable bus1;
@@ -169,12 +169,24 @@ namespace modelo
                 lons.Insert(3, ",");
                 String[] timeDate = datos[10].Split(' ');
 
+
                 try
-                {        
+                {
+
+                    String[] time = timeDate[1].Split('.');
+                    String[] date = timeDate[0].Split('-');
+                    
 
                     if (!bus1.ContainsKey(datos[11]))
                     {
-                        Bus a = new Bus();
+                        int year = Int16.Parse(date[2]);
+                        int day = Int16.Parse(datos[0]);
+                        int month = Int16.Parse(date[2]);
+                        int minute = Int16.Parse(datos[0]);
+                        int hour = Int16.Parse(date[2]);
+                        int second = Int16.Parse(datos[0]);
+                        GenericTime realFTime = new GenericTime();
+                        Bus a = new Bus(datos[11]);
                         Ubication u = new Ubication(las, lons);
 
 

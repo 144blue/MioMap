@@ -13,11 +13,11 @@ namespace modelo
         private Thread sincro;
         private double posX;
         private double posY;
-        private String time;
+        private GenericTime time;
         
 
 
-        public Bus(string busId, String time)
+        public Bus(string busId, GenericTime time)
         {
             this.BusId = busId;
             this.time = time;
@@ -29,7 +29,7 @@ namespace modelo
         public double PosX { get => posX; set => posX = value; }
         public double PosY { get => posY; set => posY = value; }
         public Thread Sincro { get => sincro; set => sincro = value; }
-        public string Time { get => time; set => time = value; }
+        public GenericTime Time { get => time; set => time = value; }
 
         public void trmove()
         {
