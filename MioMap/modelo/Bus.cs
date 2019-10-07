@@ -10,38 +10,45 @@ namespace modelo
     {
         private String busId;
         private Hashtable ubicationTime;
-        private Thread sincro;
-        private double posX;
-        private double posY;
-        private DateTime realTime;
 
-        public Bus(string busId, DateTime realTime)
+        public Bus(string busId)
         {
             this.BusId = busId;
-            this.realTime = realTime;
             UbicationTime = new Hashtable();
         }
 
+
+        public void addTime(String posX, String posY, String time)
+        {
+       //     Console.WriteLine(time);
+            String[] date = time.Split(' ');
+            String[] hour = date[1].Split('.');
+            String[] date2 = date[0].Split('-');
+            String key = Int32.Parse(date2[0]) +"-"+date2[1] + "-" +Int32.Parse(date2[2]) + " " + Int32.Parse(hour[0]) + "." + Int32.Parse(hour[1]) + "."  + Int32.Parse(hour[2]) + " " + date[2];
+
+            if (!UbicationTime.ContainsKey(key))
+            {
+                UbicationTime.Add(key, new Ubication(posX, posY));
+            }
+        }
+
+
         public string BusId { get => busId; set => busId = value; }
         public Hashtable UbicationTime { get => ubicationTime; set => ubicationTime = value; }
-        public double PosX { get => posX; set => posX = value; }
-        public double PosY { get => posY; set => posY = value; }
-        public Thread Sincro { get => sincro; set => sincro = value; }
-        public DateTime RealTime { get => realTime; set => realTime = value; }
 
-        public void trmove()
-        {
+        //      public void trmove()
+        //        {
 
-            this.PosX = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posx);
-            this.PosY = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posy);
-           
-        }
+        // this.PosX = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posx);
+        //  this.PosY = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posy);
 
-        public void move()
-        {
-            sincro = new Thread(new ThreadStart(trmove));
-            sincro.Start();
-        }
+        //}
+
+        //    public void move()
+        //   {
+        //      sincro = new Thread(new ThreadStart(trmove));
+        //     sincro.Start();
+        //}
 
 
     }

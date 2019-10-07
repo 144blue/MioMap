@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MioMap"
+    "\\MioMap",
+    "\\MioMap\\MioMap",
+    "\\MioMap\\modelo"
   ],
-  "SelectedNode": "\\MioMap\\MioMap.sln",
+  "SelectedNode": "\\MioMap\\MioMap\\Form1.cs",
   "PreviewInSolutionExplorer": false
 }

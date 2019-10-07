@@ -8,16 +8,17 @@ namespace modelo
 {
     public class Ubication
     {
-        string posx;
-        string posy;
+        string latitud;
+        string longitud;
 
-        public Ubication(string posx, string posy)
+        public Ubication(string latitud, string longitud)
         {
-            this.posx = posx;
-            this.posy = posy;
+            this.Latitud = latitud;
+            this.Longitud = longitud;
         }
 
-        public string Posx { get => posx; set => posx = value; }
-        public string Posy { get => posy; set => posy = value; }
+        public string Latitud { get => latitud; set => latitud = value; }
+        public string Longitud { get => longitud; set => longitud = value; }
+       
     }
 }

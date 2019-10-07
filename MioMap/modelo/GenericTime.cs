@@ -8,8 +8,8 @@ namespace modelo
 {
    public class GenericTime
     {
-        public static String POST_MERIDIEM = "pm";
-        public static String ANTE_MERIDIEM = "am";
+        public static String POST_MERIDIEM = "PM";
+        public static String ANTE_MERIDIEM = "AM";
         private int year;
         private int day;
         private int month;
@@ -20,7 +20,7 @@ namespace modelo
 
         
 
-        public GenericTime(int year, int day, int month, int minute, int hour, int second)
+        public GenericTime(int year, int day, int month, int minute, int hour, int second, String meridiem)
         {
             this.year = year;
             this.day = day;
@@ -28,6 +28,7 @@ namespace modelo
             this.minute = minute;
             this.hour = hour;
             this.second = second;
+            this.meridiem = meridiem;
         }
 
         public int Year { get => year; set => year = value; }
@@ -109,15 +110,69 @@ namespace modelo
             }
         }
 
+        public String parseMonth(int name)
+        {
+            String value = "";
 
+            if (name==(12))
+            {
+                value = "DIC";
+            }
+            else if (name == (11))
+            {
+                value = "NOV";
+            }
+            else if (name == (10))
+            {
+                value = "OCT";
+            }
+            else if (name == (09))
+            {
+                value = "SEP";
+            }
+            else if (name == (08))
+            {
+                value = "AGO";
+            }
+            else if (name == (07))
+            {
+                value = "JUL";
+            }
+            else if (name == (06))
+            {
+                value = "JUN";
+            }
+            else if (name == (05))
+            {
+                value = "MAY";
+            }
+            else if (name == (04))
+            {
+                value = "ABR";
+            }
+            else if (name == (03))
+            {
+                value = "MAR";
+            }
+            else if (name == (02))
+            {
+                value = "FEB";
+            }
+            else if (name == (01))
+            {
+                value = "ENE";
+            }
+           
+            return value;
+        }
         private void passYear()
         {
             year++;
         }
 
-        private String generateDataTime()
+        public String generateDataTime()
         {
-            string actual = day + "-" + month + "-" + year + " " + hour + "." + minute + "." + second + "." + meridiem;
+            string actual = day + "-" + parseMonth(month) + "-" + year + " " + hour + "." + minute + "." + second+" "+meridiem;
 
             return actual;
 

@@ -10,7 +10,9 @@ namespace modelo
 {
     public class Managment
     {
+        const string ABSOLUTE_PATH = "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data/stops.csv";
 
+        const string ABSOLUTE_PATH2 = "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data 2/DATAGRAMS.csv";
 
         Hashtable stops;
         Hashtable stations;
@@ -22,9 +24,11 @@ namespace modelo
             Stops = new Hashtable();
             Stations = new Hashtable();
             Bus1 = new Hashtable();
-            RealTime = new GenericTime(2019, 5, 10, 39, 9, 25);
-            Console.WriteLine("initilized menthods in managment");
+            //                         año  dia mes min hor seg
+            RealTime = new GenericTime(18, 01, 11, 35, 5, 25, "AM");
+
             loadStops();
+            timeReading();
         }
 
         public Hashtable Stops { get => stops; set => stops = value; }
@@ -34,21 +38,14 @@ namespace modelo
 
         private void loadStops()
         {
-           
-
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
-            StreamReader reader = new StreamReader("C:/Users/DH/Desktop/datos integra/stops.csv");
+            StreamReader reader = new StreamReader(ABSOLUTE_PATH);
 
-            Console.WriteLine("to read file");
-            //StreamReader reader = new StreamReader(ABSOLUTE_PATH);
+         
             string line = reader.ReadLine();
 
             string las;
             string lons;
-
-            double la;
-            double lon;
-
 
             int countInvalidEntries = 0;
             int markers = 0;
@@ -62,17 +59,7 @@ namespace modelo
                 las.Replace(',', '.');
                 lons = datos[7];
                 lons.Replace(',', '.');
-                //la = 0;
-                //lon = 0;
-                //try
-                //{
-                //    la = double.Parse(lons, CultureInfo.InvariantCulture);
-                //    lon = double.Parse(las, CultureInfo.InvariantCulture);
-                //}
-                //catch (Exception)
-                //{
-                //    countInvalidEntries++;
-                //}
+              
                 try
                 {
                     //  Stop Id,             Plan Version,      Short Name, Long Name,        Gps x,                 Gps Y
@@ -135,7 +122,94 @@ namespace modelo
 
         }
 
+        public int cont=1;
+        public void timeReading()
+        {
+            StreamReader sr = new StreamReader(ABSOLUTE_PATH2);
 
+            String line = sr.ReadLine();
+            line = sr.ReadLine();
+            while (line != null)
+            {
+
+                String[] dato = line.Split(',');
+
+
+                Boolean terminado = false;
+                while (!terminado)
+                {
+                    if (dato[4].Equals("-1") || dato[5].Equals("-1"))
+                    {
+                            line = sr.ReadLine();
+                        dato = line.Split(',');
+                    }
+                    else
+                    {
+
+
+                        terminado = true;
+                    }
+                }
+                //  String[] date = dato[10].Split(' ');
+
+                //    Console.WriteLine("Bus: " + dato[11]);
+                if (cont < 10000)
+                {
+                    //  Console.WriteLine(cont);
+                    String lat = dato[4].Insert(1,",");
+                    String lon = dato[5].Insert(3, ",");
+
+                    if (!bus1.ContainsKey(dato[11]))
+                    {
+                        Bus nuevo1 = new Bus(dato[11]);
+                        nuevo1.addTime(lat, lon, dato[10]);
+                        bus1.Add(dato[11], nuevo1);
+                        //        Console.WriteLine("Nuevo " + dato[11] + " posx " + dato[4] + " pos y " + dato[5] + " tiempo " + dato[10]);
+
+                    }
+
+                    else
+                    {
+                        ((Bus)bus1[dato[11]]).addTime(lat, lon, dato[10]);
+                        //        Console.WriteLine("Antiguo " + dato[11] + " posx " + dato[4] + " pos y " + dato[5] + " tiempo " + dato[10]);
+
+                    }
+                    cont++;
+
+                    line = sr.ReadLine();
+                    //        }
+                }
+                else
+                {
+                    line = null;
+                }
+
+            }
+            sr.Close();
+            Console.WriteLine("cargado");
+        }
+
+
+        public String confirmDee(String dat1,String dat2)
+        {
+            Boolean terminado = false;
+            String dat="";
+            while (!terminado)
+            {
+                if (dat1.Equals("-1") || dat2.Equals("-1"))
+                {
+                //    line = sr.ReadLine();
+                    Console.WriteLine("entra 1  " + terminado);
+                }
+                else
+                {
+                    Console.WriteLine("entra 2  " + terminado);
+
+                    terminado = true;
+                }
+            }
+            return dat;
+        }
         private void readBuss()
         {
             bus1 = new Hashtable();
@@ -151,10 +225,7 @@ namespace modelo
             string las;
             string lons;
 
-            double la;
-            double lon;
-
-            bool isTheSameBus = true;
+    
 
             int countInvalidEntries = 0;
 
@@ -169,32 +240,7 @@ namespace modelo
                 lons.Insert(3, ",");
                 String[] timeDate = datos[10].Split(' ');
 
-                //try
-                //{
-                //    //  Stop Id,             Plan Version,      Short Name, Long Name,        Gps x,                 Gps Y
-
-                //    if (!bus1.ContainsKey(datos[11]))
-                //    {
-                //        Bus a = new Bus(datos[11]);
-                //        Ubication u = new Ubication(las, lons);
-
-
-                //        a.UbicationTime.Add(timeDate[1],u);
-                //        bus1.Add(datos[11],a);
-
-                //    }
-                //    else
-                //    {
-                //        Bus temporal = (Bus)bus1[datos[11]];
-                //        temporal.UbicationTime.Add(timeDate[1],new Ubication(las,lons));
-
-                //    }
-
-                //}
-                //catch (Exception)
-                //{
-                //    countInvalidEntries++;
-                //}
+           
 
                 line = reader.ReadLine();
                 max++;
