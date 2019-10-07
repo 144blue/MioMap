@@ -30,7 +30,7 @@ namespace MioMap
         GroupBox options;
         GMapOverlay onlyBus ;
         int vel = 1;
-
+        
 
 
         public Form1()
@@ -48,16 +48,20 @@ namespace MioMap
         {
             gMapControl1.Overlays.Clear();
             gMapControl1.Overlays.Add(onlyStations);
+
+            gMapControl1.Zoom = gMapControl1.Zoom + 1;
+            gMapControl1.Zoom = gMapControl1.Zoom - 1;
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             gMapControl1.Overlays.Clear();
             gMapControl1.Overlays.Add(onlyStops);
-            
+            gMapControl1.Zoom = gMapControl1.Zoom + 1;
+            gMapControl1.Zoom = gMapControl1.Zoom - 1;
         }
 
-       
+
 
         private void Label1_Click(object sender, EventArgs e)
         {
@@ -93,26 +97,29 @@ namespace MioMap
 
         public void printStops()
         {
+            Bitmap b = (Bitmap)Image.FromFile("./2.png");
+
             ICollection keys = model.Stops.Keys;
 
             foreach(String a in keys)
-            {          
-
+            {
                 double la = double.Parse(((Stop)(model.Stops[a])).Gps_Y, CultureInfo.InvariantCulture);
                 double lon = double.Parse(((Stop)(model.Stops[a])).Gps_X, CultureInfo.InvariantCulture);
-                onlyStops.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), GMarkerGoogleType.blue_dot));
+                onlyStops.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), b));
             }
             
         }
 
         public void printStations()
         {
+            Bitmap b = (Bitmap)Image.FromFile("./4.png");
+
             ICollection keys = model.Stations.Keys;
             foreach (String a in keys)
             {
                 double la = double.Parse(((Stop)(model.Stations[a])).Gps_Y, CultureInfo.InvariantCulture);
                 double lon = double.Parse(((Stop)(model.Stations[a])).Gps_X, CultureInfo.InvariantCulture);
-                onlyStations.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), GMarkerGoogleType.green_dot));
+                onlyStations.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), b));
             }
             
         }
@@ -124,6 +131,8 @@ namespace MioMap
             gMapControl1.Overlays.Clear();
             gMapControl1.Overlays.Add(onlyStations);
             gMapControl1.Overlays.Add(onlyStops);
+            gMapControl1.Zoom = gMapControl1.Zoom + 1;
+            gMapControl1.Zoom = gMapControl1.Zoom - 1;
         }
 
 
@@ -148,7 +157,7 @@ namespace MioMap
         private void Timer1_Tick(object sender, EventArgs e)
         {
             model.RealTime.passSecond();
-            UbicationTime.Text = model.RealTime.generateDataTime();
+            UbicationTime.Text = model.RealTime.showTime();
             printAllMoveBus(model.RealTime.generateDataTime());
             Thread.Sleep(1000);
             gMapControl1.Overlays.Clear();
@@ -159,6 +168,7 @@ namespace MioMap
 
         public void printAllMoveBus(String date)
         {
+            Bitmap b = (Bitmap)Image.FromFile("./1.png");
 
             ICollection keys = model.Bus1.Keys;
 
@@ -172,12 +182,14 @@ namespace MioMap
                     double la = double.Parse(((Ubication)busActual.UbicationTime[date]).Latitud);
                     double lon = double.Parse(((Ubication)busActual.UbicationTime[date]).Longitud);
                 //    Console.WriteLine(busActual.BusId + "  ::::::  "+ la+"   "+ lon);
+                    //            Bitmap bm = (Bitmap)Image.FromFile("Properties/1.png");
 
-                         onlyBus.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), GMarkerGoogleType.blue_dot));
-                
+                         onlyBus.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), b));
+                    int ca = busActual.UbicationTime.Count;
+               //     label4.Text = ca + "";
                 }
 
-                
+               
             }
          //   Console.WriteLine("agrego los makers");
             gMapControl1.Overlays.Add(onlyBus);
@@ -248,6 +260,8 @@ namespace MioMap
         {
             gMapControl1.Overlays.Clear();
             onlyBus.Markers.Clear();
+            onlyStops.Markers.Clear();
+            onlyStations.Markers.Clear();
 
         }
 

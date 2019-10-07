@@ -106,3 +106,4 @@ C:\Users\LENOVO\source\repos\copia Respaldo\Nueva carpeta\MioMap\MioMap\MioMap\o
 C:\Users\LENOVO\source\repos\copia Respaldo\Nueva carpeta\MioMap\MioMap\MioMap\obj\Debug\MioMap.exe
 C:\Users\LENOVO\source\repos\copia Respaldo\Nueva carpeta\MioMap\MioMap\MioMap\obj\Debug\MioMap.pdb
 C:\Users\LENOVO\source\repos\copia Respaldo\Nueva carpeta\MioMap\MioMap\MioMap\bin\Debug\InputKey.dll
+C:\Users\LENOVO\source\repos\144blue\MioMap\MioMap\MioMap\bin\Debug\InputKey.dll

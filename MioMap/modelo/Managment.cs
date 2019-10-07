@@ -41,7 +41,7 @@ namespace modelo
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
             StreamReader reader = new StreamReader(ABSOLUTE_PATH);
 
-         
+
             string line = reader.ReadLine();
 
             string las;
@@ -59,7 +59,7 @@ namespace modelo
                 las.Replace(',', '.');
                 lons = datos[7];
                 lons.Replace(',', '.');
-              
+
                 try
                 {
                     //  Stop Id,             Plan Version,      Short Name, Long Name,        Gps x,                 Gps Y
@@ -122,7 +122,7 @@ namespace modelo
 
         }
 
-        public int cont=1;
+        public int cont = 1;
         public void timeReading()
         {
             StreamReader sr = new StreamReader(ABSOLUTE_PATH2);
@@ -140,7 +140,7 @@ namespace modelo
                 {
                     if (dato[4].Equals("-1") || dato[5].Equals("-1"))
                     {
-                            line = sr.ReadLine();
+                        line = sr.ReadLine();
                         dato = line.Split(',');
                     }
                     else
@@ -153,10 +153,10 @@ namespace modelo
                 //  String[] date = dato[10].Split(' ');
 
                 //    Console.WriteLine("Bus: " + dato[11]);
-                if (cont < 10000)
+                if (cont < 100000)
                 {
                     //  Console.WriteLine(cont);
-                    String lat = dato[4].Insert(1,",");
+                    String lat = dato[4].Insert(1, ",");
                     String lon = dato[5].Insert(3, ",");
 
                     if (!bus1.ContainsKey(dato[11]))
@@ -189,66 +189,6 @@ namespace modelo
             Console.WriteLine("cargado");
         }
 
-
-        public String confirmDee(String dat1,String dat2)
-        {
-            Boolean terminado = false;
-            String dat="";
-            while (!terminado)
-            {
-                if (dat1.Equals("-1") || dat2.Equals("-1"))
-                {
-                //    line = sr.ReadLine();
-                    Console.WriteLine("entra 1  " + terminado);
-                }
-                else
-                {
-                    Console.WriteLine("entra 2  " + terminado);
-
-                    terminado = true;
-                }
-            }
-            return dat;
-        }
-        private void readBuss()
-        {
-            bus1 = new Hashtable();
-
-
-            //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
-            StreamReader reader = new StreamReader("C:/Users/DH/Desktop/datos integra/DATAGRAMS.csv");
-
-            Console.WriteLine("to read file");
-            //StreamReader reader = new StreamReader(ABSOLUTE_PATH);
-            string line = reader.ReadLine();
-
-            string las;
-            string lons;
-
-    
-
-            int countInvalidEntries = 0;
-
-            int max = 0;
-
-            while (line != null && max < 100)
-            {
-                string[] datos = line.Split(',');
-                las = datos[4];
-                las.Insert(2, ",");
-                lons = datos[5];
-                lons.Insert(3, ",");
-                String[] timeDate = datos[10].Split(' ');
-
-           
-
-                line = reader.ReadLine();
-                max++;
-            }
-            Console.WriteLine("number of invalid coordenate entries of datagrams: " + countInvalidEntries);
-            reader.Close();
-
-        }
 
     }
             

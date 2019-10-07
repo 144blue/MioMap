@@ -36,20 +36,7 @@ namespace modelo
         public string BusId { get => busId; set => busId = value; }
         public Hashtable UbicationTime { get => ubicationTime; set => ubicationTime = value; }
 
-        //      public void trmove()
-        //        {
-
-        // this.PosX = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posx);
-        //  this.PosY = Convert.ToDouble(((Ubication)UbicationTime[realTime]).Posy);
-
-        //}
-
-        //    public void move()
-        //   {
-        //      sincro = new Thread(new ThreadStart(trmove));
-        //     sincro.Start();
-        //}
-
+      
 
     }
 }
