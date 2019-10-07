@@ -159,19 +159,19 @@ namespace modelo
 
             int max = 0;
 
-            while (line != null && max < 100)
+            while (line != null && max < 1000)
             {
-                string[] datos = line.Split(',');
-                las = datos[4];             
-                lons = datos[5];
-                las = las.Insert(1, ",");
-                lons = lons.Insert(3, ",");
-                String[] timeDate = datos[10].Split(' ');
+                
 
 
                 try
                 {
-
+                    string[] datos = line.Split(',');
+                    las = datos[4];             
+                    lons = datos[5];
+                    las = las.Insert(1, ",");
+                    lons = lons.Insert(3, ",");
+                    String[] timeDate = datos[10].Split(' ');
                     String[] time = timeDate[1].Split('.');
                     String[] date = timeDate[0].Split('-');
                     int year = Int16.Parse(date[2]);

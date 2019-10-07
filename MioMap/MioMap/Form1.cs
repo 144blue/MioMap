@@ -148,7 +148,10 @@ namespace MioMap
                     Ubication inTimeubication = (Ubication)((Bus)(model.Bus1[a])).UbicationTime[model.RealTime.generateDataTime()];
                     double la = double.Parse(inTimeubication.Posx);
                     double lon = double.Parse(inTimeubication.Posy);
-                    timeBusStatus.Markers.Add(new GMarkerGoogle(new PointLatLng(la, lon), GMarkerGoogleType.green_dot));
+                    GMapMarker marker = new GMarkerGoogle(new PointLatLng(la, lon), GMarkerGoogleType.green_dot);
+                    marker.ToolTipText = a;
+                    marker.Size = new System.Drawing.Size(20,20);
+                    timeBusStatus.Markers.Add(marker);
                     gMapControl1.Overlays.Add(timeBusStatus);
                     Console.WriteLine("paint coordenate: " +la+"::::::"+lon);
                 }
@@ -176,8 +179,8 @@ namespace MioMap
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            gMapControl1.Overlays.Clear();
-            timeBusStatus.Clear();
+            //gMapControl1.Overlays.Clear();
+            //timeBusStatus.Clear();
            
             model.RealTime.passSecond();
             clockView.Text = model.RealTime.Hour + ":" + model.RealTime.Minute + ":" + model.RealTime.Second;
