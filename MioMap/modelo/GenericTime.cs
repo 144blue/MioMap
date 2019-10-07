@@ -187,7 +187,7 @@ namespace modelo
             year++;
         }
 
-        private String generateDataTime()
+        public String generateDataTime()
         {
             string actual = day + "-" + month + "-" + year + " " + hour + "." + minute + "." + second + "." + meridiem;
 

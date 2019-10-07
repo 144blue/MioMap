@@ -11,18 +11,18 @@ namespace modelo
     public class Managment
     {
 
-        private 
-        Hashtable stops;
-        Hashtable stations;
-        Hashtable bus1;
-        GenericTime realTime;
+        
+        private Hashtable stops;
+        private Hashtable stations;
+        private Hashtable bus1;
+        private GenericTime realTime;
 
         public Managment()
         {
             Stops = new Hashtable();
             Stations = new Hashtable();
             Bus1 = new Hashtable();
-            RealTime = new GenericTime(2019, 5, 10, 39, 9, 25);
+            RealTime = new GenericTime(18, 1, "NOV", 37, 5, 20);
             Console.WriteLine("initilized menthods in managment");
             loadStops();
             readBuss();
@@ -47,8 +47,7 @@ namespace modelo
             string las;
             string lons;
 
-            double la;
-            double lon;
+            
 
 
             int countInvalidEntries = 0;
@@ -163,10 +162,10 @@ namespace modelo
             while (line != null && max < 100)
             {
                 string[] datos = line.Split(',');
-                las = datos[4];
-                las.Insert(2, ",");
+                las = datos[4];             
                 lons = datos[5];
-                lons.Insert(3, ",");
+                las = las.Insert(1, ",");
+                lons = lons.Insert(3, ",");
                 String[] timeDate = datos[10].Split(' ');
 
 
@@ -175,29 +174,31 @@ namespace modelo
 
                     String[] time = timeDate[1].Split('.');
                     String[] date = timeDate[0].Split('-');
-                    
+                    int year = Int16.Parse(date[2]);
+                    int day = Int16.Parse(date[0]);
+                    String month = date[1];
+                    int minute = Int16.Parse(time[1]);
+                    int hour = Int16.Parse(time[0]);
+                    int second = Int16.Parse(time[2]);
+                    GenericTime falseTime = new GenericTime(year, day, month, minute, hour, second);
 
                     if (!bus1.ContainsKey(datos[11]))
                     {
-                        int year = Int16.Parse(date[2]);
-                        int day = Int16.Parse(datos[0]);
-                        int month = Int16.Parse(date[2]);
-                        int minute = Int16.Parse(datos[0]);
-                        int hour = Int16.Parse(date[2]);
-                        int second = Int16.Parse(datos[0]);
-                        GenericTime realFTime = new GenericTime();
-                        Bus a = new Bus(datos[11]);
+                      
+                        Bus a = new Bus(datos[11],realTime);
+                        
                         Ubication u = new Ubication(las, lons);
 
 
-                        a.UbicationTime.Add(timeDate[1], u);
+                        a.UbicationTime.Add(falseTime.generateDataTime(), u);
                         bus1.Add(datos[11], a);
-
+                        Console.WriteLine("new bus added :" + falseTime.generateDataTime()+"///"+day+"///"+las+lons);
                     }
                     else
                     {
                         Bus temporal = (Bus)bus1[datos[11]];
-                        temporal.UbicationTime.Add(timeDate[1], new Ubication(las, lons));
+                        temporal.UbicationTime.Add(falseTime.generateDataTime(), new Ubication(las, lons));
+                        Console.WriteLine("position added to bus :" + falseTime.generateDataTime() + "///" + day + "///" + las + lons);
 
                     }
 
@@ -214,6 +215,8 @@ namespace modelo
             reader.Close();
 
         }
+
+        
 
     }
             
