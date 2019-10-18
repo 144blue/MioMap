@@ -10,9 +10,9 @@ namespace modelo
 {
     public class Managment
     {
-        const string ABSOLUTE_PATH = "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data/stops.csv";
-
-        const string ABSOLUTE_PATH2 = "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data 2/DATAGRAMS.csv";
+        const string ABSOLUTE_PATH_STOPS= "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data/stops.csv";
+        const string ABSOLUTE_PATH_DATAGRAM= "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data 2/DATAGRAMS.csv";
+        const string ABSOLUTE_PATH_BUS = "D:/Trabajos/Trabajos sexto/Proyecto integrador/Proyecto Metro Cali/Datos/data/buses.csv";
 
         Hashtable stops;
         Hashtable stations;
@@ -28,6 +28,7 @@ namespace modelo
             RealTime = new GenericTime(18, 01, 11, 35, 5, 25, "AM");
 
             loadStops();
+            createBus();
             timeReading();
         }
 
@@ -39,7 +40,7 @@ namespace modelo
         private void loadStops()
         {
             //DO NOT PUT CSV IN PROYECT FOLDER, USE ABSOLUTE PATH
-            StreamReader reader = new StreamReader(ABSOLUTE_PATH);
+            StreamReader reader = new StreamReader(ABSOLUTE_PATH_STOPS);
 
 
             string line = reader.ReadLine();
@@ -125,7 +126,7 @@ namespace modelo
         public int cont = 1;
         public void timeReading()
         {
-            StreamReader sr = new StreamReader(ABSOLUTE_PATH2);
+            StreamReader sr = new StreamReader(ABSOLUTE_PATH_DATAGRAM);
 
             String line = sr.ReadLine();
             line = sr.ReadLine();
@@ -146,7 +147,6 @@ namespace modelo
                     else
                     {
 
-
                         terminado = true;
                     }
                 }
@@ -159,21 +159,24 @@ namespace modelo
                     String lat = dato[4].Insert(1, ",");
                     String lon = dato[5].Insert(3, ",");
 
-                    if (!bus1.ContainsKey(dato[11]))
+                    if (bus1.ContainsKey(dato[11]))
                     {
-                        Bus nuevo1 = new Bus(dato[11]);
-                        nuevo1.addTime(lat, lon, dato[10]);
-                        bus1.Add(dato[11], nuevo1);
+                        //       Bus nuevo1 = new Bus(dato[11],"Sin Placa");
+                        //      nuevo1.addTime(lat, lon, dato[10]);
+                        //     bus1.Add(dato[11], nuevo1);
+                        //    Console.WriteLine("******************excepcion " + dato[11]);
                         //        Console.WriteLine("Nuevo " + dato[11] + " posx " + dato[4] + " pos y " + dato[5] + " tiempo " + dato[10]);
+                        Console.WriteLine("******************excepcion " + ((Bus)bus1[dato[11]]).NumberPlate);
 
-                    }
-
-                    else
-                    {
                         ((Bus)bus1[dato[11]]).addTime(lat, lon, dato[10]);
-                        //        Console.WriteLine("Antiguo " + dato[11] + " posx " + dato[4] + " pos y " + dato[5] + " tiempo " + dato[10]);
 
                     }
+
+                //    else
+                 //   {
+                        //        Console.WriteLine("Antiguo " + dato[11] + " posx " + dato[4] + " pos y " + dato[5] + " tiempo " + dato[10]);
+                 //       Console.WriteLine("******************excepcion " + dato[11]);
+                  //  }
                     cont++;
 
                     line = sr.ReadLine();
@@ -189,7 +192,42 @@ namespace modelo
             Console.WriteLine("cargado");
         }
 
+        public void createBus()
+        {
+            StreamReader lector = new StreamReader(ABSOLUTE_PATH_BUS);
+            String line = lector.ReadLine();
+            line = lector.ReadLine();
+            while (line!=null)
+            {
+                String[] bus = line.Split(',');
+          //      Console.WriteLine("lee el bus "+bus[0]);
+                if (!bus1.ContainsKey(bus[0]))
+                {
+                    //     ((Bus)bus1[bus[0]]).NumberPlate = bus[2];
+                    if (bus[2].Equals(""))
+                    {
+                        Bus nuevo = new Bus(bus[0], "Sin placa");
+                        bus1.Add(bus[0], nuevo);
 
+                    //    Console.WriteLine(bus[0]+" Sin placa");
+                    }
+                    else
+                    {
+                        Bus nuevo = new Bus(bus[0], bus[2]);
+                        bus1.Add(bus[0], nuevo);
+                    }
+                 
+            //        Console.WriteLine("**Se crea el bus " + bus[0]);
+
+                    line = lector.ReadLine();
+                }
+                else
+                {
+                    line = lector.ReadLine();
+                }
+
+            }
+        }
     }
             
 

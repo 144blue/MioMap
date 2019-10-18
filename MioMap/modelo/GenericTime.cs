@@ -180,7 +180,7 @@ namespace modelo
         }
         public String showTime()
         {
-            string actual = "fecha: "+day + " " + parseMonth(month) + " " + year + " Hora: " + hour + ":" + minute + ":" + second + ":" +" seg "+ meridiem;
+            string actual = "Fecha: "+day + " " + parseMonth(month) + " " + year + "\nHora:  " + hour + ":" + minute + ":" + second +" "+ meridiem;
 
             return actual;
 

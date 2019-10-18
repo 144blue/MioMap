@@ -10,11 +10,15 @@ namespace modelo
     {
         private String busId;
         private Hashtable ubicationTime;
+        private String numberPlate;
+        private Boolean visit;
 
-        public Bus(string busId)
+        public Bus(string busId,String numberPlate)
         {
             this.BusId = busId;
+            this.NumberPlate = numberPlate;
             UbicationTime = new Hashtable();
+            Visit = false;
         }
 
 
@@ -35,8 +39,7 @@ namespace modelo
 
         public string BusId { get => busId; set => busId = value; }
         public Hashtable UbicationTime { get => ubicationTime; set => ubicationTime = value; }
-
-      
-
+        public string NumberPlate { get => numberPlate; set => numberPlate = value; }
+        public bool Visit { get => visit; set => visit = value; }
     }
 }

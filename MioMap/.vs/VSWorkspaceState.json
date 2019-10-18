@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\MioMap",
-    "\\MioMap\\MioMap",
-    "\\MioMap\\modelo"
+    "\\modelo"
   ],
-  "SelectedNode": "\\MioMap\\MioMap.sln",
+  "SelectedNode": "\\modelo\\Stop.cs",
   "PreviewInSolutionExplorer": false
 }

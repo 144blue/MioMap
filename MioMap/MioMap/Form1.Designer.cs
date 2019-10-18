@@ -158,10 +158,10 @@ namespace MioMap
             // 
             this.UbicationTime.AutoSize = true;
             this.UbicationTime.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.UbicationTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UbicationTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UbicationTime.Location = new System.Drawing.Point(0, 319);
             this.UbicationTime.Name = "UbicationTime";
-            this.UbicationTime.Size = new System.Drawing.Size(0, 55);
+            this.UbicationTime.Size = new System.Drawing.Size(0, 25);
             this.UbicationTime.TabIndex = 9;
             // 
             // button3
