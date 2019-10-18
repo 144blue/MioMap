@@ -180,7 +180,61 @@ namespace modelo
                 passYear();
             }
         }
+        public String parseMonth(int name)
+        {
+            String value = "";
 
+            if (name == (12))
+            {
+                value = "DIC";
+            }
+            else if (name == (11))
+            {
+                value = "NOV";
+            }
+            else if (name == (10))
+            {
+                value = "OCT";
+            }
+            else if (name == (09))
+            {
+                value = "SEP";
+            }
+            else if (name == (08))
+            {
+                value = "AGO";
+            }
+            else if (name == (07))
+            {
+                value = "JUL";
+            }
+            else if (name == (06))
+            {
+                value = "JUN";
+            }
+            else if (name == (05))
+            {
+                value = "MAY";
+            }
+            else if (name == (04))
+            {
+                value = "ABR";
+            }
+            else if (name == (03))
+            {
+                value = "MAR";
+            }
+            else if (name == (02))
+            {
+                value = "FEB";
+            }
+            else if (name == (01))
+            {
+                value = "ENE";
+            }
+
+            return value;
+        }
 
         private void passYear()
         {
@@ -189,13 +243,20 @@ namespace modelo
 
         public String generateDataTime()
         {
-            string actual = day + "-" + month + "-" + year + " " + hour + "." + minute + "." + second + "." + meridiem;
+            string actual = day + "-" + parseMonth(month) + "-" + year + " " + hour + "." + minute + "." + second + " " + meridiem;
 
             return actual;
 
 
         }
 
+        public String showTime()
+        {
+            string actual = "Fecha: " + day + " " + parseMonth(month) + " " + year + "\nHora:  " + hour + ":" + minute + ":" + second + " " + meridiem;
 
+            return actual;
+
+
+        }
     }
 }
